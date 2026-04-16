@@ -21,10 +21,15 @@ with col2:
 if st.button("🚀 Iniciar Rastreo", type="primary"):
     if producto:
         with st.spinner('Escaneando la base de datos de Mercado Libre...'):
-            # Conexión a la API pública con disfraz de navegador (User-Agent)
+            
+            # Conexión a la API oficial con tu Token de Seguridad
             url = f"https://api.mercadolibre.com/sites/MLA/search?q={producto}&condition=new&limit={limite}"
             
+            # Acá está tu token oficial inyectado
+            token = "APP_USR-3921311743973275-041606-59e9c573fe0156b362e76ebe4086058b-80886052" 
+
             cabeceras = {
+                "Authorization": f"Bearer {token}",
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
             }
             
