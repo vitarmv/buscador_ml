@@ -21,9 +21,14 @@ with col2:
 if st.button("🚀 Iniciar Rastreo", type="primary"):
     if producto:
         with st.spinner('Escaneando la base de datos de Mercado Libre...'):
-            # Conexión a la API pública
+            # Conexión a la API pública con disfraz de navegador (User-Agent)
             url = f"https://api.mercadolibre.com/sites/MLA/search?q={producto}&condition=new&limit={limite}"
-            respuesta = requests.get(url)
+            
+            cabeceras = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+            }
+            
+            respuesta = requests.get(url, headers=cabeceras)
 
             if respuesta.status_code == 200:
                 datos = respuesta.json()
